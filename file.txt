@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    stages {
+        stage('Build-System Details') {
+            steps {
+                sh '''
+                echo '"ip address"'
+                hostname -I
+                '''
+            }
+        }
+
+        stage('Build-Memory Details') {
+            steps {
+                sh '''
+                echo '"Memory Details"'
+                du -sch *
+                '''
+            }
+        }
+
+         stage('Build-CPU Details') {
+            steps {
+                sh '''
+                echo '"CPU Details"'
+                lscpu
+                '''
+            }
+        }
+
+         stage('Todays date') {
+            steps {
+                sh '''
+                echo '"Todays Date"'
+                date
+                '''
+            }
+        }
+
+         stage('process command') {
+            steps {
+                sh '''
+                echo '"process commamd"'
+                ps -ef | tail  -5
+                '''
+            }
+        }
+    }
+}

@@ -1,10 +1,12 @@
 pipeline {
-    agent any
+    agent {
+        label "slave-1 && slave-2"
+    }
     stages {
         stage('Build-System Details') {
             steps {
                 sh '''
-                echo '"ip address"'
+                echo "ip address"
                 hostname -I
                 '''
             }
@@ -13,7 +15,7 @@ pipeline {
         stage('Build-Memory Details') {
             steps {
                 sh '''
-                echo '"Memory Details"'
+                echo "Memory Details"
                 du -sch *
                 '''
             }
@@ -22,7 +24,7 @@ pipeline {
          stage('Build-CPU Details') {
             steps {
                 sh '''
-                echo '"CPU Details"'
+                echo "CPU Details"
                 lscpu
                 '''
             }
@@ -31,7 +33,7 @@ pipeline {
          stage('Todays date') {
             steps {
                 sh '''
-                echo '"Todays Date"'
+                echo "Todays Date"
                 date
                 '''
             }
@@ -40,8 +42,8 @@ pipeline {
          stage('process command') {
             steps {
                 sh '''
-                echo '"process commamd"'
-                ps -ef | tail  -5
+                echo "process command"
+                ps -ef | tail -5
                 '''
             }
         }
